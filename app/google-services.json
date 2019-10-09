@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "15736468469",
+    "firebase_url": "https://ekonominapp.firebaseio.com",
+    "project_id": "ekonominapp",
+    "storage_bucket": "ekonominapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:15736468469:android:0d42c832b76f23b0",
+        "android_client_info": {
+          "package_name": "com.juanbas.ekonomin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "15736468469-vcmvlahvv965l74r7mp2oii7f70nlhs6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.juanbas.ekonomin",
+            "certificate_hash": "22a59c47844517db40e4a06fe10b7d12a637d7f4"
+          }
+        },
+        {
+          "client_id": "15736468469-ib5g9hj71gmacb1omc6epjva8qsh12c3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrfqOTTz3zy78gZP7OdKjrUnl5aqsET_g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "15736468469-ib5g9hj71gmacb1omc6epjva8qsh12c3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

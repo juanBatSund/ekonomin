@@ -6,13 +6,14 @@ import android.app.Activity
 import android.content.Intent
 import android.util.Log
 import android.view.View
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.IdpResponse
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
-import com.juanbas.ekonomin.DataBase.Entities.BudgetEntity
 import com.juanbas.ekonomin.DataBase.ViewModels.BudgetViewModel
+import com.juanbas.ekonomin.NavigationWrapper.BudgetFragment
+import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
 
@@ -20,10 +21,33 @@ class LoginActivity : AppCompatActivity() {
         ViewModelProviders.of(this).get(BudgetViewModel::class.java)
     }
 
+    private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
+        when (item.itemId) {
+            R.id.navigation_sallary -> {
+                supportFragmentManager
+                    .beginTransaction()
+                    .add(R.id.fragment_container_budget, BudgetFragment())
+                    .commit()
+                return@OnNavigationItemSelectedListener true
+            }
+            R.id.navigation_dashboard -> {
+                message.setText(R.string.title_dashboard)
+                return@OnNavigationItemSelectedListener true
+            }
+            R.id.navigation_notifications -> {
+                message.setText(R.string.title_notifications)
+                return@OnNavigationItemSelectedListener true
+            }
+        }
+        false
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         createSignIntent()
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+
     }
 
     private fun createSignIntent(){

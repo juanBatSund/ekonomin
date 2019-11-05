@@ -3,7 +3,6 @@
           package="com.juanbas.ekonomin">
 
     <application
-
             android:allowBackup="true"
             android:icon="@mipmap/ic_launcher"
             android:label="@string/app_name"
@@ -16,6 +15,10 @@
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+        </activity>
+        <activity
+                android:name=".Budget"
+                android:label="@string/title_activity_budget">
         </activity>
     </application>
 

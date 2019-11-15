@@ -8,16 +8,17 @@ import androidx.fragment.app.Fragment
 import com.juanbas.ekonomin.R
 import kotlinx.android.synthetic.main.activity_login.*
 
-class BudgetFragment: Fragment() {
+/* Fragment used to show the Incomes*/
+class IncomeFragment : Fragment() {
 
-   override fun onCreateView(
+    override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-       super.onCreateView(inflater, container, savedInstanceState)
-       val layoutInflated = inflater.inflate(R.layout.fragment_budget, fragment_container_budget, false)
+        super.onCreateView(inflater, container, savedInstanceState)
+        val layoutInflated = inflater.inflate(R.layout.fragment_budget, fragment_container_budget, false)
 
-       return layoutInflated
+        return layoutInflated
     }
 }

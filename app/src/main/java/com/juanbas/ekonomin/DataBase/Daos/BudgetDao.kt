@@ -22,7 +22,7 @@ interface BudgetDao {
     @Query("SELECT * FROM budget_table WHERE ownerId=:id")
     fun getBudgetByOwnerId(id: String): LiveData<BudgetEntity>
 
-    @Query("SELECT * FROM budget_table ORDER BY budgetName DESC")
+    @Query("SELECT * FROM budget_table ORDER BY budgetId DESC")
     fun getAllBudgets(): LiveData<List<BudgetEntity>>
 
 }

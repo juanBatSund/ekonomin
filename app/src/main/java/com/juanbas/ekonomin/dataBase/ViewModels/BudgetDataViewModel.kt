@@ -1,13 +1,13 @@
-package com.juanbas.ekonomin.DataBase.ViewModels
+package com.juanbas.ekonomin.dataBase.ViewModels
 
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import com.juanbas.ekonomin.DataBase.Entities.BudgetEntity
-import com.juanbas.ekonomin.DataBase.Repositories.BudgetRepository
+import com.juanbas.ekonomin.dataBase.Entities.BudgetEntity
+import com.juanbas.ekonomin.dataBase.Repositories.BudgetRepository
 
 /** Controls user data retrieved from database */
-class BudgetViewModel(application: Application) : AndroidViewModel(application) {
+class BudgetDataViewModel(application: Application) : AndroidViewModel(application) {
     private val budgetRepository by lazy { BudgetRepository(application) }
 
     fun insert(budget: BudgetEntity) {

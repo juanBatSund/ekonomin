@@ -3,8 +3,8 @@
 
     <item
             android:id="@+id/navigation_sallary"
-            android:icon="@drawable/ic_sallary"
-            android:title="@string/title_income"/>
+            android:icon="@drawable/ic_budget"
+            android:title="@string/title_budgets"/>
 
     <item
             android:id="@+id/navigation_dashboard"

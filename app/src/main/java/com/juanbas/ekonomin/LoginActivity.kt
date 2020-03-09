@@ -8,27 +8,27 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.NavArgument
+import androidx.navigation.findNavController
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.IdpResponse
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
-import com.juanbas.ekonomin.DataBase.ViewModels.BudgetViewModel
-import com.juanbas.ekonomin.NavigationWrapper.IncomeFragment
+import com.juanbas.ekonomin.dataBase.ViewModels.BudgetDataViewModel
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
 
-    val budgetViewModel: BudgetViewModel by lazy {
-        ViewModelProviders.of(this).get(BudgetViewModel::class.java)
-    }
-
+    private var userId:String? = null
+    private var bundle = Bundle()
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_sallary -> {
-                supportFragmentManager
+                /* gammal to start fragmentsupportFragmentManager
                     .beginTransaction()
                     .add(R.id.fragment_container_budget, IncomeFragment())
-                    .commit()
+                    .commit()*/
+
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_dashboard -> {
@@ -45,13 +45,8 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         createSignIntent()
-        if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction().replace(
-                R.id.fragment_container_budget,
-                IncomeFragment()
-            ).commit()
-        }
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+
 
     }
 
@@ -96,17 +91,11 @@ class LoginActivity : AppCompatActivity() {
                 val user = FirebaseAuth.getInstance().currentUser
                 //Log the user just to demonstrate, these lines bellow will be taken off after
                 Log.d("USERFIRE", "USer id is ${user?.uid},  ${user?.displayName}, ${user?.email} ")
-
-                /* //To be removed:
-                 val budgetToRegister = BudgetEntity(null,user!!.uid,"My budget")
-                 budgetViewModel.insert(budgetToRegister)
-
-
-                 budgetViewModel?.getAllBudgetss()?.observe(this, Observer<List<BudgetEntity>> { budgets ->
-                     budgets as ArrayList
-                     budgets.forEach{ if(it.ownerId==user?.uid) Log.d("USERFIRE","Id from db: ${it.budgetId}") }
-
-                     })*/
+                userId = user?.uid
+                bundle.clear()
+                bundle.putString("userId",userId)
+                findNavController(R.id.nav_host_fragment)
+                    .setGraph(R.navigation.navigation_graph, bundle)
 
             } else {
                 Log.d("USERFIRE", "Sign in failed")

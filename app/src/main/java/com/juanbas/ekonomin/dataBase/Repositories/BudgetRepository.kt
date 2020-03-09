@@ -1,8 +1,8 @@
-package com.juanbas.ekonomin.DataBase.Repositories
+package com.juanbas.ekonomin.dataBase.Repositories
 
 import android.app.Application
 import androidx.lifecycle.LiveData
-import com.juanbas.ekonomin.DataBase.Entities.BudgetEntity
+import com.juanbas.ekonomin.dataBase.Entities.BudgetEntity
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch

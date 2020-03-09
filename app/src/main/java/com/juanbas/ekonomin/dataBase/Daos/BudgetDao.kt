@@ -1,8 +1,8 @@
-package com.juanbas.ekonomin.DataBase.Daos
+package com.juanbas.ekonomin.dataBase.Daos
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.juanbas.ekonomin.DataBase.Entities.BudgetEntity
+import com.juanbas.ekonomin.dataBase.Entities.BudgetEntity
 
 @Dao
 interface BudgetDao {

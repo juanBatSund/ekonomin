@@ -1,4 +1,4 @@
-package com.juanbas.ekonomin.DataBase.Entities
+package com.juanbas.ekonomin.dataBase.Entities
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -7,4 +7,5 @@ import androidx.room.PrimaryKey
 data class BudgetEntity(@PrimaryKey(autoGenerate = true)
                             val budgetId: Int?,
                             val ownerId: String?,
-                            val budgetName: String?)
+                            val dueMonth: Int?,
+                            val dueYear: Int?)

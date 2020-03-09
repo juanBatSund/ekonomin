@@ -1,12 +1,12 @@
-package com.juanbas.ekonomin.DataBase
+package com.juanbas.ekonomin.dataBase
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.juanbas.ekonomin.DataBase.Daos.BudgetDao
-import com.juanbas.ekonomin.DataBase.Entities.BudgetEntity
+import com.juanbas.ekonomin.dataBase.Daos.BudgetDao
+import com.juanbas.ekonomin.dataBase.Entities.BudgetEntity
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch

@@ -24,7 +24,7 @@ import com.juanbas.ekonomin.navigationWrapper.budget.BudgetView
 /* Handles the list of budgets retrieved from data base*/
 class BudgetFragmentList : Fragment() {
 
-    private lateinit var viewAdapter: RecyclerView.Adapter<*>
+    :wqqprivate lateinit var viewAdapter: RecyclerView.Adapter<*>
     private lateinit var viewManager: RecyclerView.LayoutManager
     private lateinit var recyclerView: RecyclerView
     private val args: BudgetFragmentListArgs by navArgs<BudgetFragmentListArgs>()

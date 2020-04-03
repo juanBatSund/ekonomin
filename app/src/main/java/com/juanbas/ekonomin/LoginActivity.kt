@@ -7,14 +7,11 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.NavArgument
 import androidx.navigation.findNavController
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.IdpResponse
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
-import com.juanbas.ekonomin.dataBase.ViewModels.BudgetDataViewModel
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
@@ -94,8 +91,8 @@ class LoginActivity : AppCompatActivity() {
                 userId = user?.uid
                 bundle.clear()
                 bundle.putString("userId",userId)
-                findNavController(R.id.nav_host_fragment)
-                    .setGraph(R.navigation.navigation_graph, bundle)
+                findNavController(R.id.budget_list_nav_host_fragment)
+                    .setGraph(R.navigation.home_navigation_graph, bundle)
 
             } else {
                 Log.d("USERFIRE", "Sign in failed")

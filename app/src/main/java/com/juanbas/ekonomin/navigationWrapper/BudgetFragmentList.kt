@@ -10,16 +10,14 @@ import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.NavController
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.juanbas.ekonomin.R
 import com.juanbas.ekonomin.dataBase.Entities.BudgetEntity
-import com.juanbas.ekonomin.dataBase.ViewModels.BudgetDataViewModel
 import com.juanbas.ekonomin.navigationWrapper.budget.BudgetRecyclerAdapter
 import com.juanbas.ekonomin.navigationWrapper.budget.BudgetView
+import com.juanbas.ekonomin.navigationWrapper.budget.BudgetViewModel
 
 /* Handles the list of budgets retrieved from data base*/
 class BudgetFragmentList : Fragment() {
@@ -30,8 +28,8 @@ class BudgetFragmentList : Fragment() {
     private val args: BudgetFragmentListArgs by navArgs<BudgetFragmentListArgs>()
     private val BUDGET_FRAGMENT_LIST_TAG = "BudgetFragmentList"
 
-    val budgetDataViewModel: BudgetDataViewModel by lazy {
-        ViewModelProviders.of(this).get(BudgetDataViewModel::class.java)
+    val budgetDataViewModel: BudgetViewModel by lazy {
+        ViewModelProviders.of(this).get(BudgetViewModel::class.java)
     }
 
     override fun onCreateView(

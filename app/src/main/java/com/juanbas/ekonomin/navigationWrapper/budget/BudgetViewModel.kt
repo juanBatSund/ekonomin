@@ -23,9 +23,20 @@ class BudgetViewModel(application: Application) : AndroidViewModel(application) 
         datePicked.value = "$dueYear/$dueMonth/$dueDay"
     }
 
-    fun saveBudget(budgetOwnerId: String?){
+    fun insertBudget(budgetOwnerId: String?){
         val budgetToSave = BudgetEntity(null, budgetOwnerId, dueMonth, dueYear)
         budgetRepository.insertBudget(budgetToSave)
     }
+
+    fun updateBudget(budget: BudgetEntity) {
+        budgetRepository.updateBudget(budget)
+    }
+
+    fun deleteBudget(budget: BudgetEntity) {
+        budgetRepository.deleteBudget(budget)
+    }
+
+    fun getBudgetByOwnerId(id: String) = budgetRepository.getBudgetByOwnerId(id)
+    fun getAllBudgetss() = budgetRepository.getAllBudgets()
 
 }

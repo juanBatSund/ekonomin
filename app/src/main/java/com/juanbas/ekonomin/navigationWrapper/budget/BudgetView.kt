@@ -8,6 +8,7 @@ import android.widget.DatePicker
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.findNavController
 import com.juanbas.ekonomin.R
 import com.juanbas.ekonomin.databinding.ActivityBudgetBinding
 import java.util.*
@@ -29,6 +30,7 @@ class BudgetView : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
                 this.setLifecycleOwner(this@BudgetView)
                 this.viewmodel = viewModel
             }
+        findNavController(R.id.budget_income_expense_nav_host_fragment).setGraph(R.navigation.budget_navigation_graph)
 
     }
 
@@ -49,11 +51,12 @@ class BudgetView : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
     }
 
     fun onSaveButtonClicked(v: View) {
-        viewModel.saveBudget(userId)
+
+        viewModel.insertBudget(userId)
         finish()
     }
 
-    fun onCancelButtonClicked(v: View) {
+    fun onCancelButtonClicked(unsuded: View) {
         finish()
     }
 

@@ -19,7 +19,7 @@ interface BudgetDao {
     @Query("DELETE FROM budget_table")
     fun deleteAllBudgets()
 
-    @Query("SELECT * FROM budget_table WHERE ownerId=:id")
+    @Query("SELECT * FROM budget_table WHERE userId=:id")
     fun getBudgetByOwnerId(id: String): LiveData<BudgetEntity>
 
     @Query("SELECT * FROM budget_table ORDER BY budgetId DESC")

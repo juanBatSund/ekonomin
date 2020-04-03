@@ -9,9 +9,6 @@
             android:name="com.juanbas.ekonomin.navigationWrapper.BudgetFragmentList"
             android:label="fragment_budget_list"
             tools:layout="@layout/fragment_budget_list" >
-        <argument android:name="userId"
-                app:argType="string"
-                android:defaultValue='""' />
     </fragment>
 
 

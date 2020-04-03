@@ -6,17 +6,22 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.juanbas.ekonomin.dataBase.Daos.BudgetDao
+import com.juanbas.ekonomin.dataBase.Daos.IncomeDao
+import com.juanbas.ekonomin.dataBase.Daos.UserDao
 import com.juanbas.ekonomin.dataBase.Entities.BudgetEntity
+import com.juanbas.ekonomin.dataBase.Entities.IncomeEntity
+import com.juanbas.ekonomin.dataBase.Entities.UserEntity
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
 
-@Database(entities = arrayOf(BudgetEntity::class), version = 2)
+@Database(entities = arrayOf(BudgetEntity::class, IncomeEntity::class, UserEntity::class), version = 4)
 abstract class EkonominDataBase : RoomDatabase() {
 
     abstract fun budgetDao(): BudgetDao
-
+    abstract fun incomeDao(): IncomeDao
+    abstract fun userDao(): UserDao
     companion object {
         private var INSTANCE: EkonominDataBase? = null
 

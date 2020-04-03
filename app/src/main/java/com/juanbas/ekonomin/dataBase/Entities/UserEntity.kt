@@ -6,12 +6,12 @@ import androidx.room.Index
 import androidx.room.PrimaryKey
 
 @Entity(
-    tableName = "users",
+    tableName = "users_table",
     indices = [Index(value= ["userId"], unique = true)]
 )
-data class User(
+data class UserEntity(
     @PrimaryKey(autoGenerate = false)
-    val userId:String?,
+    val userId:String,
     val userName: String?) {
 }
 

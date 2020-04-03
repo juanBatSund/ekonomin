@@ -37,11 +37,14 @@ class BudgetView : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
     fun checkDateTextEdit(unused: View) {
         val calendar = Calendar.getInstance()
         val datePickerDialog = DatePickerDialog(
-            this, this,
+            this,
+            R.style.CustomDatePickerDialog,
+            this,
             calendar.get(Calendar.YEAR),
             calendar.get(Calendar.MONTH),
             calendar.get(Calendar.DAY_OF_MONTH)
         )
+        datePickerDialog.setTitle(getString(R.string.date_picker_title))
         datePickerDialog.show()
 
     }

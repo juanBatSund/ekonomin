@@ -16,5 +16,12 @@ interface IncomeDao {
     @Delete()
     fun deleteIncome(incomeEntity: IncomeEntity)
 
-    @Query("DELETE FROM ")
+    @Query("DELETE FROM income_table")
+    fun deleteAllIncomes()
+
+    @Query("SELECT * FROM income_table WHERE budgetId=:id")
+    fun getIncomeByBudgetId(id:Int?): LiveData<List<IncomeEntity>>
+
+    @Query("SELECT * FROM income_table ORDER BY budgetId DESC")
+    fun getAllIncomes(): LiveData<List<IncomeEntity>>
 }

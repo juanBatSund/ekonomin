@@ -12,31 +12,28 @@ import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.IdpResponse
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
+import com.juanbas.ekonomin.dataBase.Entities.UserEntity
+import com.juanbas.ekonomin.dataBase.Repositories.UserRepository
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
 
-    private var userId:String? = null
-    private var bundle = Bundle()
-    private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
-        when (item.itemId) {
-            R.id.navigation_sallary -> {
-                /* gammal to start fragmentsupportFragmentManager
-                    .beginTransaction()
-                    .add(R.id.fragment_container_budget, IncomeFragment())
-                    .commit()*/
-
-                return@OnNavigationItemSelectedListener true
+    private val userRepository: UserRepository by lazy { UserRepository(application) }
+    private val mOnNavigationItemSelectedListener =
+        BottomNavigationView.OnNavigationItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.navigation_Budgets -> {
+                    return@OnNavigationItemSelectedListener true
+                }
+                R.id.navigation_dashboard -> {
+                    return@OnNavigationItemSelectedListener true
+                }
+                R.id.navigation_notifications -> {
+                    return@OnNavigationItemSelectedListener true
+                }
             }
-            R.id.navigation_dashboard -> {
-                return@OnNavigationItemSelectedListener true
-            }
-            R.id.navigation_notifications -> {
-                return@OnNavigationItemSelectedListener true
-            }
+            false
         }
-        false
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -86,13 +83,13 @@ class LoginActivity : AppCompatActivity() {
             if (resultCode == Activity.RESULT_OK) {
                 // Successfully signed in
                 val user = FirebaseAuth.getInstance().currentUser
-                //Log the user just to demonstrate, these lines bellow will be taken off after
                 Log.d("USERFIRE", "USer id is ${user?.uid},  ${user?.displayName}, ${user?.email} ")
-                userId = user?.uid
-                bundle.clear()
-                bundle.putString("userId",userId)
+                val currentSessionUser =
+                    UserEntity(user?.uid.toString(), user?.displayName.toString())
+                userRepository.insertUser(currentSessionUser)
+                UserRepository.sessionUser = currentSessionUser
                 findNavController(R.id.budget_list_nav_host_fragment)
-                    .setGraph(R.navigation.home_navigation_graph, bundle)
+                    .setGraph(R.navigation.home_navigation_graph)
 
             } else {
                 Log.d("USERFIRE", "Sign in failed")
@@ -101,11 +98,11 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-
     private fun signOut() {
         AuthUI.getInstance()
             .signOut(this)
             .addOnCompleteListener {
+
                 Log.d("USERFIRE", "Signed out")
                 createSignIntent()
             }

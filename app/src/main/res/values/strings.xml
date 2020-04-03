@@ -23,5 +23,7 @@
     <!-- income fragment view texts -->
     <string name="add_income_button_text">Add income</string>
 
+    <string name="date_picker_title">Choose the budget reference date</string>
+
 
 </resources>

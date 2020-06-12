@@ -17,7 +17,7 @@ import com.juanbas.ekonomin.dataBase.Repositories.UserRepository
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
-
+    private val LOGIN_ACTIVITY_TAG = "LoginActivityTag"
     private val userRepository: UserRepository by lazy { UserRepository(application) }
     private val mOnNavigationItemSelectedListener =
         BottomNavigationView.OnNavigationItemSelectedListener { item ->
@@ -83,17 +83,27 @@ class LoginActivity : AppCompatActivity() {
             if (resultCode == Activity.RESULT_OK) {
                 // Successfully signed in
                 val user = FirebaseAuth.getInstance().currentUser
-                Log.d("USERFIRE", "USer id is ${user?.uid},  ${user?.displayName}, ${user?.email} ")
-                val currentSessionUser =
-                    UserEntity(user?.uid.toString(), user?.displayName.toString())
-                userRepository.insertUser(currentSessionUser)
+                val userId = user?.uid.toString()
+                val userName = user?.displayName.toString()
+                Log.d("USERFIRE", "USer id is $userId,  $userName ")
+
+                //Create entity instance for user and assing to global value
+                val currentSessionUser = UserEntity(userId, userName)
                 UserRepository.sessionUser = currentSessionUser
+
+                // Insert or update the database
+                var userRetrieved = userRepository.getUserById(userId)
+                if (userRetrieved == null) {
+                    userRepository.insertUser(currentSessionUser)
+                    Log.d(LOGIN_ACTIVITY_TAG, "User does not exist inserting")
+                } else {
+                    userRepository.updateUser(currentSessionUser)
+                    Log.d(LOGIN_ACTIVITY_TAG, "User already exists updating")
+                }
                 findNavController(R.id.budget_list_nav_host_fragment)
                     .setGraph(R.navigation.home_navigation_graph)
-
             } else {
                 Log.d("USERFIRE", "Sign in failed")
-
             }
         }
     }

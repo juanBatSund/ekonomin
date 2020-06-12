@@ -42,4 +42,7 @@ class BudgetRepository(application: Application) : Repository(application) {
         return allBudgets
     }
 
+    companion object{
+        lateinit var budgetEntity: BudgetEntity
+    }
 }

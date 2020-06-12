@@ -6,6 +6,7 @@ import com.juanbas.ekonomin.dataBase.Entities.UserEntity
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import org.w3c.dom.Entity
 
 class UserRepository(application: Application) : Repository(application) {
@@ -40,8 +41,8 @@ class UserRepository(application: Application) : Repository(application) {
         return userDao?.getAllUsers()
     }
 
-    fun getUserById(id: String): LiveData<UserEntity>?{
-        return userDao?.getUserById(id)
+    fun getUserById(id: String): UserEntity? = runBlocking{
+        userDao?.getUserById(id)
     }
 
     companion object{

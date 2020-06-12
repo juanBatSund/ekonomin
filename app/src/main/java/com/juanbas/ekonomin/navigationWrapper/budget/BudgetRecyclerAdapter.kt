@@ -1,11 +1,17 @@
 package com.juanbas.ekonomin.navigationWrapper.budget
 
+
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat.startActivity
+import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.juanbas.ekonomin.R
 import com.juanbas.ekonomin.dataBase.Entities.BudgetEntity
+import com.juanbas.ekonomin.dataBase.Repositories.BudgetRepository
+import com.juanbas.ekonomin.dataBase.Repositories.UserRepository
 import kotlinx.android.synthetic.main.budget_recycler_item_row.view.*
 
 
@@ -19,6 +25,12 @@ class BudgetRecyclerAdapter(
     /** Assigns each Budget entity in the [budgets] list into a view holder */
     override fun onBindViewHolder(holder: BudgetHolder, position: Int) {
         holder.budgetEntity = budgets.get(position)
+        holder.v.setOnClickListener {
+            val intent = Intent(it.context, BudgetView::class.java)
+            BudgetRepository.budgetEntity=budgets.get(position)
+            startActivity(it.context,intent,null)
+        }
+
     }
 
     /** Returns size from budgets list */

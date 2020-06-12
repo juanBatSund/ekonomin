@@ -20,6 +20,7 @@ data class BudgetEntity(
     @PrimaryKey(autoGenerate = true)
     val budgetId: Int?,
     val userId: String?,
-    val dueMonth: Int?,
-    val dueYear: Int?
+    var dueMonth: Int?,
+    var dueYear: Int?,
+    var dueDay: Int?
 )

@@ -25,8 +25,12 @@ class IncomeRepository(application: Application): Repository(application) {
         }
     }
 
-    fun getIncomeByBudgetId(id: Int?): LiveData<List<IncomeEntity>>? {
+    fun getAllIncomeByBudgetId(id: Int?): LiveData<List<IncomeEntity>>? {
         return incomeDao?.getIncomeByBudgetId(id)
+    }
+
+    fun getAllIncomes(): LiveData<List<IncomeEntity>>? {
+        return incomeDao?.getAllIncomes()
     }
 
 }

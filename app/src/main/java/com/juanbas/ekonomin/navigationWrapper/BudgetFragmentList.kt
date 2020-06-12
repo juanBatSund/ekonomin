@@ -56,19 +56,17 @@ class BudgetFragmentList : Fragment() {
         val addBudgetButton = view.findViewById<Button>(R.id.add_budget_button)
         addBudgetButton.setOnClickListener {
             createBudget()
-            /*Todo: user the code below when pressing on the newly created budget.
-             val intent = Intent(activity, BudgetView::class.java)
-             startActivity(intent)*/
+
         }
 
     }
 
     private fun loadAdapter() {
-        budgetDataViewModel.getAllBudgetss()
-            ?.observe(viewLifecycleOwner, Observer<List<BudgetEntity>> { budgets ->
-                val adapter = viewAdapter as BudgetRecyclerAdapter
-                adapter.loadItems(budgets as ArrayList<BudgetEntity>)
-            })
+        val observer = Observer<List<BudgetEntity>> { budgets ->
+            val adapter = viewAdapter as BudgetRecyclerAdapter
+            adapter.loadItems(budgets as ArrayList<BudgetEntity>)
+        }
+        budgetDataViewModel.getAllBudgetss()?.observe(viewLifecycleOwner,observer )
     }
 
     private fun createBudget() {
@@ -76,7 +74,7 @@ class BudgetFragmentList : Fragment() {
             DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
                 Log.d(BUDGET_FRAGMENT_LIST_TAG, "Date choosen: $year/${month + 1}/$dayOfMonth")
                 val userId = UserRepository.sessionUser.userId
-                val budgetEntity = BudgetEntity(null, userId, month + 1, year)
+                val budgetEntity = BudgetEntity(null, userId, month + 1, year,dayOfMonth)
                 budgetRepository.insertBudget(budgetEntity)
             }
 

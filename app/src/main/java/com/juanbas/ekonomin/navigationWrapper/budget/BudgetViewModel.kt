@@ -12,19 +12,19 @@ class BudgetViewModel(application: Application) : AndroidViewModel(application) 
 
     var datePicked = MutableLiveData<String>()
     val budgetRepository by lazy {BudgetRepository(application)}
-    var dueDay: Int = 0
-    var dueMonth: Int = 0
-    var dueYear: Int = 0
+    var dueDay: Int? = 0
+    var dueMonth: Int? = 0
+    var dueYear: Int? = 0
 
-    fun setDatePicked(year: Int, month: Int, day: Int){
-        dueDay = day
-        dueMonth = month+1
+    fun setDatePicked(year: Int?, month: Int?, day: Int?){
+        dueMonth = month
         dueYear = year
+        dueDay = day
         datePicked.value = "$dueYear/$dueMonth/$dueDay"
     }
 
     fun insertBudget(budgetOwnerId: String?){
-        val budgetToSave = BudgetEntity(null, budgetOwnerId, dueMonth, dueYear)
+        val budgetToSave = BudgetEntity(null, budgetOwnerId, dueMonth, dueYear,dueDay)
         budgetRepository.insertBudget(budgetToSave)
     }
 

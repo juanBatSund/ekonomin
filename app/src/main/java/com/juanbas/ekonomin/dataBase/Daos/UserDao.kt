@@ -3,6 +3,7 @@ package com.juanbas.ekonomin.dataBase.Daos
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.juanbas.ekonomin.dataBase.Entities.UserEntity
+
 @Dao
 interface UserDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -17,7 +18,7 @@ interface UserDao {
     fun deleteAllUsers()
 
     @Query("SELECT * FROM users_table WHERE userId=:id")
-    fun getUserById(id: String): LiveData<UserEntity>
+    suspend fun getUserById(id: String): UserEntity
 
     @Query("SELECT * FROM users_table ORDER BY userId DESC")
     fun getAllUsers(): LiveData<List<UserEntity>>

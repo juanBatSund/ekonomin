@@ -11,7 +11,7 @@
             android:layout_height="wrap_content">
 
         <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/budgeListRecycler"
+                android:id="@+id/incomeListRecycler"
                 android:layout_width="407dp"
                 android:layout_height="438dp"
                 android:layout_alignBottom="@+id/add_budget_button"

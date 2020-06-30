@@ -5,6 +5,7 @@ import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
 
+/** Entity representing each user instance to be saved in the database. */
 @Entity(
     tableName = "users_table",
     indices = [Index(value= ["userId"], unique = true)]

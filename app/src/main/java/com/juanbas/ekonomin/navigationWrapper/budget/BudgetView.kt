@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
+import com.google.android.material.tabs.TabLayoutMediator
 import com.juanbas.ekonomin.R
 import com.juanbas.ekonomin.dataBase.Entities.BudgetEntity
 import com.juanbas.ekonomin.dataBase.Entities.UserEntity
@@ -16,9 +17,11 @@ import com.juanbas.ekonomin.dataBase.Repositories.BudgetRepository
 import com.juanbas.ekonomin.dataBase.Repositories.Repository
 import com.juanbas.ekonomin.dataBase.Repositories.UserRepository
 import com.juanbas.ekonomin.databinding.ActivityBudgetBinding
+import com.juanbas.ekonomin.navigationWrapper.budget.income.IncomeFragment
+import kotlinx.android.synthetic.main.activity_budget.*
 import java.util.*
 
-/* Used to add and edit budgets */
+/* Used to handle the listing and insertion of expenses and Incomes. */
 class BudgetView : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
 
     private lateinit var viewModel: BudgetViewModel
@@ -33,7 +36,17 @@ class BudgetView : AppCompatActivity(), DatePickerDialog.OnDateSetListener {
                 this.setLifecycleOwner(this@BudgetView)
                 this.viewmodel = viewModel
             }
-        findNavController(R.id.budget_income_expense_nav_host_fragment).setGraph(R.navigation.budget_navigation_graph)
+
+        income_expense_pager.adapter = IncomeExpenseAdapter(this)
+
+        TabLayoutMediator(income_expense_bar, income_expense_pager){
+                tab, position ->
+            when(position){
+                0 -> tab.text = "Income"
+                1 -> tab.text = "Expense"
+            }
+
+        }.attach()
         budgetEntity = BudgetRepository.budgetEntity
         userId = BudgetRepository.budgetEntity.userId
         viewModel.setDatePicked(budgetEntity.dueYear,budgetEntity.dueMonth, budgetEntity.dueDay)

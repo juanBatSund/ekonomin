@@ -11,10 +11,10 @@ import com.juanbas.ekonomin.dataBase.Repositories.BudgetRepository
 class BudgetViewModel(application: Application) : AndroidViewModel(application) {
 
     var datePicked = MutableLiveData<String>()
-    val budgetRepository by lazy {BudgetRepository(application)}
-    var dueDay: Int? = 0
-    var dueMonth: Int? = 0
-    var dueYear: Int? = 0
+    private val budgetRepository by lazy {BudgetRepository(application)}
+    private var dueDay: Int? = 0
+    private var dueMonth: Int? = 0
+    private var dueYear: Int? = 0
 
     fun setDatePicked(year: Int?, month: Int?, day: Int?){
         dueMonth = month

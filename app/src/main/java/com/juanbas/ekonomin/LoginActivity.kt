@@ -16,6 +16,7 @@ import com.juanbas.ekonomin.dataBase.Entities.UserEntity
 import com.juanbas.ekonomin.dataBase.Repositories.UserRepository
 import kotlinx.android.synthetic.main.activity_login.*
 
+/** Login activity used with Firebase authentication. */
 class LoginActivity : AppCompatActivity() {
     private val LOGIN_ACTIVITY_TAG = "LoginActivityTag"
     private val userRepository: UserRepository by lazy { UserRepository(application) }

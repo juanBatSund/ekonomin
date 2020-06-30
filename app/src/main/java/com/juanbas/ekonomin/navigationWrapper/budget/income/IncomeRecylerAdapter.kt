@@ -5,32 +5,26 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.juanbas.ekonomin.R
-import com.juanbas.ekonomin.dataBase.Entities.BudgetEntity
 import com.juanbas.ekonomin.dataBase.Entities.IncomeEntity
-import com.juanbas.ekonomin.navigationWrapper.budget.BudgetViewModel
-import kotlinx.android.synthetic.main.budget_recycler_item_row.view.*
 import kotlinx.android.synthetic.main.income_recycler_item_row.view.*
 
 
-/** Adapter used to connect content from database into BudgetHolder view holder */
-class IncomeRecyclerAdapter(
-    val incomeViewModel: IncomeViewModel
-) : RecyclerView.Adapter<IncomeRecyclerAdapter.IncomeHolder>() {
+/** Adapter used to populate the income instances from the database into view holders. */
+class IncomeRecyclerAdapter: RecyclerView.Adapter<IncomeRecyclerAdapter.IncomeViewHolder>() {
 
     private var incomes: ArrayList<IncomeEntity> = ArrayList()
 
-    /** Assigns each Budget entity in the [budgets] list into a view holder */
-    override fun onBindViewHolder(holder: IncomeHolder, position: Int) {
-
+    /** Assigns each income entity in the [icomes] list into a view holder */
+    override fun onBindViewHolder(holder: IncomeViewHolder, position: Int) {
         holder.incomeEntity = incomes.get(position)
     }
 
-    /** Returns size from budgets list */
+    /** Returns size from income list */
     override fun getItemCount() = incomes.size
 
     /** Inflate a layout instance for each holder */
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): IncomeHolder =
-        IncomeHolder(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): IncomeViewHolder =
+        IncomeViewHolder(
             LayoutInflater.from(parent.context)
                 .inflate(R.layout.income_recycler_item_row, parent, false)
         )
@@ -41,6 +35,7 @@ class IncomeRecyclerAdapter(
         this.notifyDataSetChanged()
     }
 
+    /** TODO: Not yet implemented, but will be in future commits. */
     fun removeAt(position: Int) {
         val productToDelete = incomes.get(position)
         //incomeViewModel.deleteBudget(productToDelete)
@@ -49,13 +44,14 @@ class IncomeRecyclerAdapter(
     }
 
     /** Defines the view holder object and what to do with it. */
-    class IncomeHolder(var v: View) : RecyclerView.ViewHolder(v) {
+    inner class IncomeViewHolder(var v: View) : RecyclerView.ViewHolder(v) {
         var incomeEntity: IncomeEntity? = null
             set(value) {
                 field = value
-                v.incomeOwner.text="${value?.incomeOwner}"
-                v.incomeValue.text = "${value?.incomeValue}"
+                v.incomeOwner.text="${incomeEntity?.incomeOwner}"
+                v.incomeValue.text = "${incomeEntity?.incomeValue}"
             }
+
     }
 
 }

@@ -20,7 +20,7 @@ import com.juanbas.ekonomin.navigationWrapper.budget.BudgetRecyclerAdapter
 import com.juanbas.ekonomin.navigationWrapper.budget.BudgetViewModel
 import java.util.*
 
-/* Handles the list of budgets retrieved from data base*/
+/* Handles the list of budgets retrieved from data base. */
 class BudgetFragmentList : Fragment() {
 
     private lateinit var viewAdapter: RecyclerView.Adapter<*>

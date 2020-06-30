@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.juanbas.ekonomin.dataBase.Entities.UserEntity
 
+/** Dao used to retrieve the [UserEntity] instances from the database. */
 @Dao
 interface UserDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)

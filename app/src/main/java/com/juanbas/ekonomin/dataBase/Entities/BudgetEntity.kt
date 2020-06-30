@@ -5,6 +5,7 @@ import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.PrimaryKey
 
+/** Entity representing each budget instance to be saved in the database. */
 @Entity(
     tableName = "budget_table",
     foreignKeys = [

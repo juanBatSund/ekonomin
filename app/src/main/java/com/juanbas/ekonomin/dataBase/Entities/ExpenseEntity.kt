@@ -4,22 +4,25 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.PrimaryKey
+import com.juanbas.ekonomin.dataBase.Entities.BudgetEntity
 
-/** Entity representing each income instance to be saved in the database. */
+/** Entity representing each expense instance to be saved in the database. */
 @Entity(
-    tableName = "income_table",
+    tableName = "expense_table",
     foreignKeys = [
         ForeignKey(
             entity = BudgetEntity::class,
             parentColumns = arrayOf("budgetId"),
             childColumns = arrayOf("budgetId")
         )],
-    indices = [Index(value = ["incomeId"])]
-)
-data class IncomeEntity(
+    indices = [Index(value = ["expenseId"])]
+    )
+data class ExpenseEntity(
     @PrimaryKey(autoGenerate = true)
-    val incomeId: Int?,
+    val expenseId: Int?,
     val budgetId: Int?,
-    val incomeOwner: String,
-    val incomeValue: Double,
-    val incomeSource:String)
+    val expenseName: String,
+    val expenseValue: Double,
+    val expenseCategory: String
+) {
+}

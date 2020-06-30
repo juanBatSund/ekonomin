@@ -69,54 +69,29 @@
 
         </LinearLayout>
 
-        <LinearLayout
-                android:id="@+id/income_expense_layout"
+
+        <com.google.android.material.tabs.TabLayout
+                android:id="@+id/income_expense_bar"
                 android:layout_width="378dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_height="91dp"
+                app:layout_constraintBottom_toTopOf="@+id/income_expense_pager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/top_date_picker_layout">
+                app:layout_constraintTop_toBottomOf="@+id/top_date_picker_layout"
+                app:layout_constraintVertical_bias="0.0">
 
-            <Button
-                    android:id="@+id/budgetIncomeButton"
-                    android:layout_width="189dp"
-                    android:layout_height="53dp"
-                    android:layout_gravity="center"
-                    android:background="@color/fui_bgGoogle"
-                    android:text="@string/budget_icome_text"
-                    app:srcCompat="@drawable/com_facebook_auth_dialog_header_background"
-                    tools:layout_editor_absoluteX="34dp"
-                    tools:layout_editor_absoluteY="129dp" />
+        </com.google.android.material.tabs.TabLayout>
 
-            <Button
-                    android:id="@+id/budgetExpenseButton"
-                    android:layout_width="189dp"
-                    android:layout_height="53dp"
-                    android:layout_gravity="center"
-                    android:background="@color/fui_bgGoogle"
-                    android:text="@string/budget_icome_expenses"
-                    app:srcCompat="@drawable/com_facebook_auth_dialog_header_background"
-                    tools:layout_editor_absoluteX="222dp"
-                    tools:layout_editor_absoluteY="129dp" />
-
-        </LinearLayout>
-
-        <fragment
-                android:id="@+id/budget_income_expense_nav_host_fragment"
-                android:name="androidx.navigation.fragment.NavHostFragment"
+        <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/income_expense_pager"
                 android:layout_width="378dp"
-                android:layout_height="532dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="8dp"
-                android:orientation="horizontal"
+                android:layout_height="477dp"
+                android:layout_marginBottom="28dp"
                 app:layout_constraintBottom_toTopOf="@+id/budgetSaveCancelLayout"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/income_expense_layout">
+                app:layout_constraintStart_toStartOf="parent">
 
-        </fragment>
+        </androidx.viewpager2.widget.ViewPager2>
 
         <LinearLayout
                 android:id="@+id/budgetSaveCancelLayout"
@@ -124,12 +99,12 @@
                 android:layout_height="61dp"
                 android:layout_marginStart="4dp"
                 android:layout_marginEnd="4dp"
-                android:layout_marginBottom="4dp"
+                android:layout_marginBottom="16dp"
                 android:gravity="center"
                 android:orientation="horizontal"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.391"
+                app:layout_constraintHorizontal_bias="0.52"
                 app:layout_constraintStart_toStartOf="parent">
 
             <Button

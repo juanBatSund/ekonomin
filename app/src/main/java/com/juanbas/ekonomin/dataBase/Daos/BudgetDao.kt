@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.juanbas.ekonomin.dataBase.Entities.BudgetEntity
 
+/** Dao used to retrieve the [BudgetEntity] instances from the database. */
 @Dao
 interface BudgetDao {
 

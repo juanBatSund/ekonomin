@@ -15,7 +15,7 @@ import com.juanbas.ekonomin.dataBase.Repositories.UserRepository
 import kotlinx.android.synthetic.main.budget_recycler_item_row.view.*
 
 
-/** Adapter used to connect content from database into BudgetHolder view holder */
+/** Adapter used to populate the Budget instances from the database into view holders. */
 class BudgetRecyclerAdapter(
     val productModel: BudgetViewModel
 ) : RecyclerView.Adapter<BudgetRecyclerAdapter.BudgetHolder>() {
@@ -49,6 +49,7 @@ class BudgetRecyclerAdapter(
         this.notifyDataSetChanged()
     }
 
+    /** TODO: Implement, not done yet */
     fun removeAt(position: Int) {
         val productToDelete = budgets.get(position)
         productModel.deleteBudget(productToDelete)

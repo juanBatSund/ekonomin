@@ -4,7 +4,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".navigationWrapper.budget.income.IncomeFragment">
+        tools:context=".navigationWrapper.budgets.income.IncomeFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -13,7 +13,7 @@
         <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/incomeListRecycler"
                 android:layout_width="match_parent"
-                android:layout_height="400dp"
+                android:layout_height="500dp"
                 android:layout_alignBottom="@+id/add_budget_button"
                 android:scrollbars="vertical"
                 app:layout_constraintEnd_toEndOf="parent"

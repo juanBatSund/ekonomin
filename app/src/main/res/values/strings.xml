@@ -16,7 +16,7 @@
     <string name="budget_icome_text">Income</string>
     <string name="budget_icome_expenses">Expenses</string>
     <string name="due_date_reference">Date</string>
-    <string name="choose_date">Choose Date</string>
+    <string name="choose_date">Change</string>
     <string name="cancel_button">Cancel</string>
     <string name="save_button">Save</string>
 

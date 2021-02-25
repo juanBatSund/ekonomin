@@ -26,4 +26,7 @@ interface BudgetDao {
     @Query("SELECT * FROM budget_table ORDER BY budgetId DESC")
     fun getAllBudgets(): LiveData<List<BudgetEntity>>
 
+    @Query("SELECT * FROM budget_table WHERE userId=:id ORDER BY budgetId DESC")
+    fun getAllBudgetsByOwnerId(id: String): LiveData<List<BudgetEntity>>
+
 }

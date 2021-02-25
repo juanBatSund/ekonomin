@@ -1,6 +1,7 @@
 package com.juanbas.ekonomin.dataBase.Daos
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.room.*
 import com.juanbas.ekonomin.dataBase.Entities.IncomeEntity
 
@@ -25,4 +26,8 @@ interface IncomeDao {
 
     @Query("SELECT * FROM income_table ORDER BY budgetId DESC")
     fun getAllIncomes(): LiveData<List<IncomeEntity>>
+
+    @Query("SELECT SUM(incomeValue) FROM income_table WHERE budgetId=:id")
+    fun getTotalIncomeByBudgetId(id:Int?): LiveData<Double>
+
 }

@@ -1,4 +1,4 @@
-package com.juanbas.ekonomin.navigationWrapper.budget.expenses
+package com.juanbas.ekonomin.navigationWrapper.budgets.expenses
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.juanbas.ekonomin.R
 import com.juanbas.ekonomin.dataBase.Entities.ExpenseEntity
-import com.juanbas.ekonomin.dataBase.Entities.IncomeEntity
 import kotlinx.android.synthetic.main.expense_recycler_item_row.view.*
 
 /** Adapter used to populate the expenses instances from the database into view holders. */

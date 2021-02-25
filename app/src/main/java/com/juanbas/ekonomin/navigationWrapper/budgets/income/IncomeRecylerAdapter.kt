@@ -1,4 +1,4 @@
-package com.juanbas.ekonomin.navigationWrapper.budget.income
+package com.juanbas.ekonomin.navigationWrapper.budgets.income
 
 import android.view.LayoutInflater
 import android.view.View

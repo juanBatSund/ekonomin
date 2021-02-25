@@ -1,4 +1,4 @@
-package com.juanbas.ekonomin.navigationWrapper.budget
+package com.juanbas.ekonomin.navigationWrapper.budgets
 
 
 import android.content.Intent
@@ -6,18 +6,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat.startActivity
-import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.juanbas.ekonomin.R
 import com.juanbas.ekonomin.dataBase.Entities.BudgetEntity
 import com.juanbas.ekonomin.dataBase.Repositories.BudgetRepository
-import com.juanbas.ekonomin.dataBase.Repositories.UserRepository
 import kotlinx.android.synthetic.main.budget_recycler_item_row.view.*
 
 
 /** Adapter used to populate the Budget instances from the database into view holders. */
 class BudgetRecyclerAdapter(
-    val productModel: BudgetViewModel
+    val productModel: BudgeListViewModel
 ) : RecyclerView.Adapter<BudgetRecyclerAdapter.BudgetHolder>() {
 
     private var budgets: ArrayList<BudgetEntity> = ArrayList()

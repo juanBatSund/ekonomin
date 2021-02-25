@@ -18,7 +18,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
 /** Database creation class. */
-@Database(entities = arrayOf(BudgetEntity::class, IncomeEntity::class, UserEntity::class, ExpenseEntity::class), version = 7)
+@Database(entities = arrayOf(BudgetEntity::class, IncomeEntity::class, UserEntity::class, ExpenseEntity::class), version = 8)
 abstract class EkonominDataBase : RoomDatabase() {
 
     abstract fun budgetDao(): BudgetDao

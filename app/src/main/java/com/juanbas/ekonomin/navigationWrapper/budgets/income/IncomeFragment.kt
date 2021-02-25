@@ -1,4 +1,4 @@
-package com.juanbas.ekonomin.navigationWrapper.budget.income
+package com.juanbas.ekonomin.navigationWrapper.budgets.income
 
 import android.app.AlertDialog
 import android.os.Bundle
@@ -11,12 +11,9 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.tabs.TabLayoutMediator
 import com.juanbas.ekonomin.R
 import com.juanbas.ekonomin.dataBase.Entities.IncomeEntity
 import com.juanbas.ekonomin.dataBase.Repositories.BudgetRepository
-import com.juanbas.ekonomin.navigationWrapper.budget.IncomeExpenseAdapter
-import kotlinx.android.synthetic.main.activity_budget.*
 import kotlinx.android.synthetic.main.income_recycler_item_row.view.*
 
 /** Used to display a list and insertion of incomes. */

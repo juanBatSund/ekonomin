@@ -30,7 +30,7 @@ class UserRepository(application: Application) : Repository(application) {
         }
     }
 
-    fun deleteAllUsers(user: UserEntity): Job {
+    fun deleteAllUsers(): Job {
         return CoroutineScope(IO).launch {
             userDao?.deleteAllUsers()
         }
@@ -42,10 +42,6 @@ class UserRepository(application: Application) : Repository(application) {
 
     fun getUserById(id: String): UserEntity? = runBlocking{
         userDao?.getUserById(id)
-    }
-
-    companion object{
-        lateinit var sessionUser:UserEntity
     }
 
 }

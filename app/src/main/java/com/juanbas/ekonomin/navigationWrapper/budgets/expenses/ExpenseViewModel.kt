@@ -1,4 +1,4 @@
-package com.juanbas.ekonomin.navigationWrapper.budget.expenses
+package com.juanbas.ekonomin.navigationWrapper.budgets.expenses
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel

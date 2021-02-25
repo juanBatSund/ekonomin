@@ -1,4 +1,4 @@
-package com.juanbas.ekonomin.navigationWrapper
+package com.juanbas.ekonomin.navigationWrapper.budgets
 
 import android.app.DatePickerDialog
 import android.os.Bundle
@@ -6,18 +6,17 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.juanbas.ekonomin.R
 import com.juanbas.ekonomin.dataBase.Entities.BudgetEntity
 import com.juanbas.ekonomin.dataBase.Repositories.BudgetRepository
 import com.juanbas.ekonomin.dataBase.Repositories.UserRepository
-import com.juanbas.ekonomin.navigationWrapper.budget.BudgetRecyclerAdapter
-import com.juanbas.ekonomin.navigationWrapper.budget.BudgetViewModel
+import com.juanbas.ekonomin.databinding.FragmentBudgetListBinding
 import java.util.*
 
 /* Handles the list of budgets retrieved from data base. */
@@ -27,64 +26,65 @@ class BudgetFragmentList : Fragment() {
     private lateinit var viewManager: RecyclerView.LayoutManager
     private lateinit var recyclerView: RecyclerView
     private val BUDGET_FRAGMENT_LIST_TAG = "BudgetFragmentList"
-    private val budgetRepository by lazy { BudgetRepository(activity!!.application) }
+    private var viewBinding: FragmentBudgetListBinding? = null
+    private val budgetRepository by lazy { BudgetRepository(requireActivity().application) }
+    private val args: BudgetFragmentListArgs by navArgs()
 
-    val budgetDataViewModel: BudgetViewModel by lazy {
-        ViewModelProviders.of(this).get(BudgetViewModel::class.java)
+    private lateinit var userId: String
+    val budgetListViewModel: BudgeListViewModel by lazy {
+        ViewModelProvider(this).get(BudgeListViewModel::class.java)
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        val inflater_helper = inflater.inflate(R.layout.fragment_budget_list, container, false)
-        return inflater_helper
-
+        userId = args.userId
+        Log.d(BUDGET_FRAGMENT_LIST_TAG, "User id: $userId")
+        viewBinding = FragmentBudgetListBinding.inflate(inflater, container, false)
+        return viewBinding!!.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewAdapter = BudgetRecyclerAdapter(budgetDataViewModel)
+        createRecyclerView(view)
+        observerAndLoadNewBudgets()
+        viewBinding!!.addBudgetButton.setOnClickListener {
+            addNewBudget()
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        viewBinding = null
+    }
+
+    private fun createRecyclerView(view: View) {
+        viewAdapter = BudgetRecyclerAdapter(budgetListViewModel)
         viewManager = LinearLayoutManager(activity?.applicationContext)
         recyclerView = view.findViewById<RecyclerView>(R.id.budgeListRecycler).apply {
             setHasFixedSize(true)
             layoutManager = viewManager
             adapter = viewAdapter
         }
-        loadAdapter()
-        val addBudgetButton = view.findViewById<Button>(R.id.add_budget_button)
-        addBudgetButton.setOnClickListener {
-            createBudget()
-
-        }
-
     }
 
-    private fun loadAdapter() {
+    private fun observerAndLoadNewBudgets() {
         val observer = Observer<List<BudgetEntity>> { budgets ->
             val adapter = viewAdapter as BudgetRecyclerAdapter
             adapter.loadItems(budgets as ArrayList<BudgetEntity>)
         }
-        budgetDataViewModel.getAllBudgetss()?.observe(viewLifecycleOwner,observer )
+        budgetListViewModel.getAllBudgetsByOwnerId(userId)?.observe(viewLifecycleOwner, observer)
     }
 
-    private fun createBudget() {
-        val dateDialogListener =
-            DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
-                Log.d(BUDGET_FRAGMENT_LIST_TAG, "Date choosen: $year/${month + 1}/$dayOfMonth")
-                val userId = UserRepository.sessionUser.userId
-                val budgetEntity = BudgetEntity(null, userId, month + 1, year,dayOfMonth)
-                budgetRepository.insertBudget(budgetEntity)
-            }
-
+    private fun addNewBudget() {
+        val dateDialogListener = dateListener()
         val calendar = Calendar.getInstance()
         val year = calendar.get(Calendar.YEAR)
         val month = calendar.get(Calendar.MONTH)
         val day = calendar.get(Calendar.DAY_OF_MONTH)
-
         val dateDialog = DatePickerDialog(
-            activity,
+            requireContext(),
             R.style.CustomDatePickerDialog,
             dateDialogListener, year, month, day
         )
@@ -92,4 +92,11 @@ class BudgetFragmentList : Fragment() {
         dateDialog.show()
     }
 
+    private fun dateListener(): DatePickerDialog.OnDateSetListener {
+        return DatePickerDialog.OnDateSetListener { _ , year, month, dayOfMonth ->
+            Log.d(BUDGET_FRAGMENT_LIST_TAG, "Date choosen: $year/${month + 1}/$dayOfMonth")
+            val budgetEntity = BudgetEntity(null, userId, month + 1, year, dayOfMonth)
+            budgetRepository.insertBudget(budgetEntity)
+        }
+    }
 }

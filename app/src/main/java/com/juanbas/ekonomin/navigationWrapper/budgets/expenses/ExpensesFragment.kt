@@ -1,4 +1,4 @@
-package com.juanbas.ekonomin.navigationWrapper.budget.expenses
+package com.juanbas.ekonomin.navigationWrapper.budgets.expenses
 
 import android.app.AlertDialog
 import android.os.Bundle
@@ -11,12 +11,9 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.juanbas.ekonomin.dataBase.Repositories.ExpenseRepository
 import com.juanbas.ekonomin.R
 import com.juanbas.ekonomin.dataBase.Entities.ExpenseEntity
-import com.juanbas.ekonomin.dataBase.Entities.IncomeEntity
 import com.juanbas.ekonomin.dataBase.Repositories.BudgetRepository
-import com.juanbas.ekonomin.navigationWrapper.budget.income.IncomeRecyclerAdapter
 import kotlinx.android.synthetic.main.expense_add_dialog.view.*
 
 /** Used to handle insertion of new expenses. */

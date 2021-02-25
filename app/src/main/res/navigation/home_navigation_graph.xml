@@ -6,9 +6,12 @@
         app:startDestination="@id/budgetFragmentList">
     <fragment
             android:id="@+id/budgetFragmentList"
-            android:name="com.juanbas.ekonomin.navigationWrapper.BudgetFragmentList"
+            android:name="com.juanbas.ekonomin.navigationWrapper.budgets.BudgetFragmentList"
             android:label="fragment_budget_list"
             tools:layout="@layout/fragment_budget_list" >
+        <argument
+                android:name="userId"
+                app:argType="string" />
     </fragment>
 
 

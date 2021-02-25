@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
->
+        xmlns:tools="http://schemas.android.com/tools">
     <data>
-        <variable name="viewmodel" type="com.juanbas.ekonomin.navigationWrapper.budget.BudgetViewModel"/>
-    </data>
 
+        <variable
+                name="viewmodel"
+                type="com.juanbas.ekonomin.navigationWrapper.budgets.BudgetViewModel" />
+    </data>
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".navigationWrapper.budget.BudgetView">
+            tools:context=".navigationWrapper.budgets.BudgetView">
 
-        <LinearLayout
+        <RelativeLayout
                 android:id="@+id/top_date_picker_layout"
                 android:layout_width="378dp"
-                android:layout_height="45dp"
+                android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
@@ -45,7 +45,7 @@
                     android:id="@+id/datePickedTextLabel"
                     android:layout_width="206dp"
                     android:layout_height="31dp"
-                    android:layout_gravity="center"
+                    android:layout_gravity="center" android:layout_toEndOf="@+id/due_date_reference"
                     android:text="@{viewmodel.datePicked}"
                     android:textAlignment="center"
                     android:textAllCaps="false"
@@ -54,85 +54,113 @@
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
+
             <Button
                     android:id="@+id/datePickerTextEdit"
                     style="@style/FirebaseUI.Button.AccountChooser"
                     android:layout_width="wrap_content"
-                    android:layout_height="34dp"
-                    android:layout_gravity="center"
+                    android:layout_height="25dp"
+
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_toEndOf="@id/datePickedTextLabel"
                     android:background="@drawable/fui_idp_button_background_phone"
                     android:backgroundTint="@color/colorPrimary"
                     android:onClick="checkDateTextEdit"
                     android:text="@string/choose_date"
                     android:textAlignment="center"
                     android:textSize="12sp" />
+        </RelativeLayout>
+        <RelativeLayout
+                android:id="@+id/finance_resume"
+                android:layout_width="378dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:gravity="start|top"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/top_date_picker_layout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                >
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/currency_id"
+                    android:layout_toEndOf="@id/total_income_title"
+                    android:text="SEK"
+                    />
 
-        </LinearLayout>
+            <TextView
+                    android:id="@+id/total_income_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:text="Total Income ..............................."
+                    android:textSize="12sp"
+                    android:textColor="@color/browser_actions_title_color"
+                    android:textStyle="bold" />
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/total_income_value"
+                    android:layout_toEndOf="@id/currency_id"
+                    android:textSize="12sp"
+                    android:text="@{viewmodel.totalIncome.toString()}"
+                    />
+
+            <TextView
+                    android:id="@+id/total_expense_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/total_income_title"
+                    android:layout_marginTop="0dp"
+                    android:singleLine="true"
+                    android:text="Total Expense"
+                    android:textSize="12sp"
+                    android:textColor="@color/browser_actions_title_color"
+                    android:textStyle="bold" />
+
+            <TextView
+                    android:id="@+id/saldo_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/total_expense_title"
+                    android:layout_marginTop="0dp"
+                    android:singleLine="true"
+                    android:text="Saldo"
+                    android:textSize="12sp"
+                    android:textColor="@color/browser_actions_title_color"
+                    android:textStyle="bold" />
+        </RelativeLayout>
 
 
         <com.google.android.material.tabs.TabLayout
                 android:id="@+id/income_expense_bar"
-                android:layout_width="378dp"
-                android:layout_height="91dp"
-                app:layout_constraintBottom_toTopOf="@+id/income_expense_pager"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toTopOf="@id/income_expense_pager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/top_date_picker_layout"
+                app:layout_constraintTop_toBottomOf="@id/finance_resume"
                 app:layout_constraintVertical_bias="0.0">
 
         </com.google.android.material.tabs.TabLayout>
 
         <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/income_expense_pager"
-                android:layout_width="378dp"
-                android:layout_height="477dp"
-                android:layout_marginBottom="28dp"
-                app:layout_constraintBottom_toTopOf="@+id/budgetSaveCancelLayout"
+                android:layout_width="379dp"
+                android:layout_height="569dp"
+                android:layout_marginBottom="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
         </androidx.viewpager2.widget.ViewPager2>
-
-        <LinearLayout
-                android:id="@+id/budgetSaveCancelLayout"
-                android:layout_width="378dp"
-                android:layout_height="61dp"
-                android:layout_marginStart="4dp"
-                android:layout_marginEnd="4dp"
-                android:layout_marginBottom="16dp"
-                android:gravity="center"
-                android:orientation="horizontal"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.52"
-                app:layout_constraintStart_toStartOf="parent">
-
-            <Button
-                    android:id="@+id/cancel_budget_button"
-                    style="@style/FirebaseUI.Button.AccountChooser"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginEnd="20dp"
-                    android:background="@drawable/fui_idp_button_background_phone"
-                    android:backgroundTint="@color/colorPrimary"
-                    android:onClick="onCancelButtonClicked"
-                    android:text="@string/cancel_button"
-                    android:textAlignment="center" />
-
-            <Button
-                    android:id="@+id/save_budget_button"
-                    style="@style/FirebaseUI.Button.AccountChooser"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginStart="20dp"
-                    android:background="@drawable/fui_idp_button_background_phone"
-                    android:backgroundTint="@color/colorPrimary"
-                    android:onClick="onSaveButtonClicked"
-                    android:text="@string/save_button"
-                    android:textAlignment="center" />
-        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

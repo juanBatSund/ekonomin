@@ -1,10 +1,9 @@
-package com.juanbas.ekonomin.dataBase.Entities
+package com.juanbas.ekonomin.dataBase.entities
 
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.PrimaryKey
-import com.juanbas.ekonomin.dataBase.Entities.BudgetEntity
 
 /** Entity representing each expense instance to be saved in the database. */
 @Entity(

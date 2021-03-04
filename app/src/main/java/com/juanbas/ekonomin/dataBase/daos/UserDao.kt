@@ -1,8 +1,8 @@
-package com.juanbas.ekonomin.dataBase.Daos
+package com.juanbas.ekonomin.dataBase.daos
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.juanbas.ekonomin.dataBase.Entities.UserEntity
+import com.juanbas.ekonomin.dataBase.entities.UserEntity
 
 /** Dao used to retrieve the [UserEntity] instances from the database. */
 @Dao
@@ -23,5 +23,8 @@ interface UserDao {
 
     @Query("SELECT * FROM users_table ORDER BY userId DESC")
     fun getAllUsers(): LiveData<List<UserEntity>>
+
+    @Query("SELECT isLoggedIn FROM users_table WHERE userId=:id")
+    fun isUserLoggedIn(id: String): LiveData<Boolean>
 
 }

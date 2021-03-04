@@ -10,9 +10,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.tabs.TabLayoutMediator
 import com.juanbas.ekonomin.R
-import com.juanbas.ekonomin.dataBase.Entities.BudgetEntity
-import com.juanbas.ekonomin.dataBase.Repositories.BudgetRepository
-import com.juanbas.ekonomin.dataBase.Repositories.IncomeRepository
+import com.juanbas.ekonomin.dataBase.entities.BudgetEntity
+import com.juanbas.ekonomin.dataBase.repositories.BudgetRepository
+import com.juanbas.ekonomin.dataBase.repositories.IncomeRepository
 import com.juanbas.ekonomin.databinding.ActivityBudgetBinding
 import kotlinx.android.synthetic.main.activity_budget.*
 import java.util.*

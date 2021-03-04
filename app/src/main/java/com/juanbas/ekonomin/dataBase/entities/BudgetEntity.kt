@@ -1,4 +1,4 @@
-package com.juanbas.ekonomin.dataBase.Entities
+package com.juanbas.ekonomin.dataBase.entities
 
 import androidx.room.Entity
 import androidx.room.ForeignKey

@@ -1,6 +1,5 @@
-package com.juanbas.ekonomin.dataBase.Entities
+package com.juanbas.ekonomin.dataBase.entities
 
-import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
@@ -13,6 +12,7 @@ import androidx.room.PrimaryKey
 data class UserEntity(
     @PrimaryKey(autoGenerate = false)
     val userId:String,
-    val userName: String?) {
-}
+    val userName: String?,
+    val isLoggedIn: Boolean
+)
 

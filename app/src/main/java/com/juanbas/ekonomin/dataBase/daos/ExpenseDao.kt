@@ -1,8 +1,8 @@
-package com.juanbas.ekonomin.dataBase.Daos
+package com.juanbas.ekonomin.dataBase.daos
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.juanbas.ekonomin.dataBase.Entities.ExpenseEntity
+import com.juanbas.ekonomin.dataBase.entities.ExpenseEntity
 
 /** Dao used to retrieve the [ExpenseEntity] instances from the database. */
 @Dao

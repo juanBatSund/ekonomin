@@ -2,8 +2,8 @@ package com.juanbas.ekonomin.navigationWrapper.budgets.expenses
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import com.juanbas.ekonomin.dataBase.Entities.ExpenseEntity
-import com.juanbas.ekonomin.dataBase.Repositories.ExpenseRepository
+import com.juanbas.ekonomin.dataBase.entities.ExpenseEntity
+import com.juanbas.ekonomin.dataBase.repositories.ExpenseRepository
 /**
  * Handles data change on ExpenseRepository. This can also be used to change data in the
  * layout in the future.

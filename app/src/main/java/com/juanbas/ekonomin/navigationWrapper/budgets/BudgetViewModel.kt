@@ -4,8 +4,8 @@ package com.juanbas.ekonomin.navigationWrapper.budgets
 import android.app.Application
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
-import com.juanbas.ekonomin.dataBase.Repositories.BudgetRepository
-import com.juanbas.ekonomin.dataBase.Repositories.IncomeRepository
+import com.juanbas.ekonomin.dataBase.repositories.BudgetRepository
+import com.juanbas.ekonomin.dataBase.repositories.IncomeRepository
 
 /* Handles view changes on the activity_budget layout */
 class BudgetViewModel(application: Application) : BudgeListViewModel(application) {

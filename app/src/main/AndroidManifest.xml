@@ -18,17 +18,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".navigationWrapper.NavigationWrapper">
+        <activity android:name=".navigationWrapper.NavigationWrapperActivity">
 
         </activity>
         <activity
                 android:name=".navigationWrapper.budgets.BudgetView"
                 android:label="@string/title_activity_budget"
-                android:parentActivityName=".navigationWrapper.NavigationWrapper"
+                android:parentActivityName=".navigationWrapper.NavigationWrapperActivity"
                 android:screenOrientation="portrait">
             <meta-data
                     android:name="android.support.PARENT_ACTIVITY"
-                    android:value=".navigationWrapper.NavigationWrapper" />
+                    android:value=".navigationWrapper.NavigationWrapperActivity" />
         </activity>
     </application>
 

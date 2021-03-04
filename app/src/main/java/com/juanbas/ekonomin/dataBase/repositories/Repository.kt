@@ -1,4 +1,4 @@
-package com.juanbas.ekonomin.dataBase.Repositories
+package com.juanbas.ekonomin.dataBase.repositories
 
 import android.app.Application
 import com.juanbas.ekonomin.dataBase.EkonominDataBase

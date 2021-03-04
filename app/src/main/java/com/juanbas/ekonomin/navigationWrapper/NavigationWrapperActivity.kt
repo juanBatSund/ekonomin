@@ -17,7 +17,7 @@ import com.juanbas.ekonomin.login.LoginActivity
  * Handles instantiations of fragments and bottom navigation.
  * The first fragment is [BudgetFragmentList].
  */
-class NavigationWrapper : AppCompatActivity() {
+class NavigationWrapperActivity : AppCompatActivity() {
     companion object {
         const val USER_INFO = "userInfo"
     }
@@ -42,6 +42,12 @@ class NavigationWrapper : AppCompatActivity() {
         return true
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        restartLogin(false)
+        finish()
+    }
+
     // Reacts to the sign out button press on the menu
     fun onSignOutClick(unused: MenuItem): Boolean {
         signOut()
@@ -63,10 +69,16 @@ class NavigationWrapper : AppCompatActivity() {
             .addOnCompleteListener {
                 Log.d("Sign out", "Signed out")
             }
+
+       restartLogin()
+        /* TODO: Remove the user from the database in the future when it is possible get all data
+         from remote data source.*/
+    }
+
+    private fun restartLogin(isLoggedIn: Boolean = false){
+        navigationWrapperViewModel.updateUserSessionState(userInfo, isLoggedIn)
         val loginIntent = Intent(this, LoginActivity::class.java)
         startActivity(loginIntent)
         finish()
-        /* TODO: Remove the user from the database in the future when it is possible get all data
-         from remote data source.*/
     }
 }

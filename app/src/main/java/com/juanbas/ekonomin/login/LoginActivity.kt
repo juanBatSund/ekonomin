@@ -1,40 +1,52 @@
 package com.juanbas.ekonomin.login
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
+import androidx.activity.addCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.IdpResponse
 import com.google.firebase.auth.FirebaseAuth
 import com.juanbas.ekonomin.R
 import com.juanbas.ekonomin.databinding.ActivityLoginBinding
-import com.juanbas.ekonomin.navigationWrapper.NavigationWrapper
+import com.juanbas.ekonomin.navigationWrapper.NavigationWrapperActivity
 
 
 /** Login activity used with Firebase authentication. */
 class LoginActivity : AppCompatActivity() {
     private lateinit var viewBinding: ActivityLoginBinding
     private val loginViewModel by lazy { ViewModelProvider(this).get(LoginViewModel::class.java) }
-
     companion object {
-        private const val RC_SIGN_IN = 123
-        private const val INPUT_INT = "input_int"
-        private const val USER_ID = "userId"
-        private const val USER_NAME = "userName"
-        private const val USER_INFO = "userInfo"
-        private const val LOGIN_ERROR = "Could not login"
+        const val RC_SIGN_IN = 123
+        const val INPUT_INT = "input_int"
+        const val LOGIN_ERROR = "Could not login"
+        const val USER_INFO = "userInfo"
+        const val LOGIN_ACTIVITY_TAG = "loginActivityTag"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewBinding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(viewBinding.root)
-        createSignIntent()
+        if (savedInstanceState!=null) {
+            loginViewModel.userInfo = savedInstanceState
+        }else {
+            createSignIntent()
+        }
     }
 
+    override fun onStop() {
+        super.onStop()
+        onSaveInstanceState(loginViewModel.userInfo)
+    }
 
     private fun createSignIntent() {
         val providers = arrayListOf(
@@ -43,7 +55,6 @@ class LoginActivity : AppCompatActivity() {
         )
         val intent = createAuthenticationIntent(providers)
         authenticationRequest(intent).launch(RC_SIGN_IN)
-
     }
 
     private fun createAuthenticationIntent(providers: ArrayList<AuthUI.IdpConfig>): Intent {
@@ -52,7 +63,7 @@ class LoginActivity : AppCompatActivity() {
             .setAvailableProviders(providers)
             .setLogo(R.drawable.money_icon_images_11) // Set logo drawable
             .setIsSmartLockEnabled(false)
-            .build().apply { putExtra(INPUT_INT, "input_int") }
+            .build().apply { putExtra(INPUT_INT, INPUT_INT) }
     }
 
     private fun authenticationRequest(intent: Intent) =
@@ -60,24 +71,36 @@ class LoginActivity : AppCompatActivity() {
             handleResponse(response)
         }
 
-
+    @SuppressLint("RestrictedApi")
     private fun handleResponse(response: IdpResponse?) {
-        if (response == null || response.error != null) {
+        if (response == null ){
+            finish()
+            Log.d(LOGIN_ACTIVITY_TAG,
+                "Back pressed or something wrong with request.")
+        }else if (response.error != null || !response.isSuccessful ) {
+            Log.d(LOGIN_ACTIVITY_TAG,
+                "Response to request returned an error: ${response.error}.")
             Toast.makeText(
                 this, LOGIN_ERROR,
                 Toast.LENGTH_LONG
-            ).show();
+            ).show()
         } else {
+            Log.d(LOGIN_ACTIVITY_TAG,
+                "Login succeeded.")
             /* Handle sign-in success from returned data. */
             val user = FirebaseAuth.getInstance().currentUser
-            val userID = user?.uid.toString()
+            val userId = user?.uid.toString()
             val userName = user?.displayName.toString()
-            loginViewModel.registerUser(userName, userID)
-            val userBundle = bundleOf(Pair(USER_ID, userID), Pair(USER_NAME, userName))
-            val intent = Intent(this, NavigationWrapper::class.java)
-                .apply { putExtra(USER_INFO, userBundle) }
-            startActivity(intent)
-            finish()
+            loginViewModel.registerUser(userName, userId, true)
+            startNavigationWrapper()
         }
+    }
+
+    private fun startNavigationWrapper(){
+        Log.d(LOGIN_ACTIVITY_TAG, "Starting navigation landing on budget list.")
+        val intent = Intent(this, NavigationWrapperActivity::class.java)
+            .apply { putExtra(USER_INFO, loginViewModel.userInfo) }
+        startActivity(intent)
+        finish()
     }
 }

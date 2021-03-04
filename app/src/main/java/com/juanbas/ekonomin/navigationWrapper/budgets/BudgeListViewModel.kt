@@ -2,8 +2,8 @@ package com.juanbas.ekonomin.navigationWrapper.budgets
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import com.juanbas.ekonomin.dataBase.Entities.BudgetEntity
-import com.juanbas.ekonomin.dataBase.Repositories.BudgetRepository
+import com.juanbas.ekonomin.dataBase.entities.BudgetEntity
+import com.juanbas.ekonomin.dataBase.repositories.BudgetRepository
 
 open class BudgeListViewModel(application: Application): AndroidViewModel(application) {
 

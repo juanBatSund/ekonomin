@@ -1,10 +1,9 @@
-package com.juanbas.ekonomin.dataBase.Repositories
+package com.juanbas.ekonomin.dataBase.repositories
 
 import android.app.Application
-import com.juanbas.ekonomin.dataBase.Entities.ExpenseEntity
+import com.juanbas.ekonomin.dataBase.entities.ExpenseEntity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 

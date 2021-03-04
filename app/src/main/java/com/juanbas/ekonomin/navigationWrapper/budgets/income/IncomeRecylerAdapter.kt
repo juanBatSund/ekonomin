@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.juanbas.ekonomin.R
-import com.juanbas.ekonomin.dataBase.Entities.IncomeEntity
+import com.juanbas.ekonomin.dataBase.entities.IncomeEntity
 import kotlinx.android.synthetic.main.income_recycler_item_row.view.*
 
 

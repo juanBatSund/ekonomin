@@ -12,8 +12,8 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.juanbas.ekonomin.R
-import com.juanbas.ekonomin.dataBase.Entities.IncomeEntity
-import com.juanbas.ekonomin.dataBase.Repositories.BudgetRepository
+import com.juanbas.ekonomin.dataBase.entities.IncomeEntity
+import com.juanbas.ekonomin.dataBase.repositories.BudgetRepository
 import kotlinx.android.synthetic.main.income_recycler_item_row.view.*
 
 /** Used to display a list and insertion of incomes. */

@@ -13,9 +13,8 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.juanbas.ekonomin.R
-import com.juanbas.ekonomin.dataBase.Entities.BudgetEntity
-import com.juanbas.ekonomin.dataBase.Repositories.BudgetRepository
-import com.juanbas.ekonomin.dataBase.Repositories.UserRepository
+import com.juanbas.ekonomin.dataBase.entities.BudgetEntity
+import com.juanbas.ekonomin.dataBase.repositories.BudgetRepository
 import com.juanbas.ekonomin.databinding.FragmentBudgetListBinding
 import java.util.*
 

@@ -1,11 +1,10 @@
-package com.juanbas.ekonomin.dataBase.Repositories
+package com.juanbas.ekonomin.dataBase.repositories
 
 import android.app.Application
 import androidx.lifecycle.LiveData
-import com.juanbas.ekonomin.dataBase.Entities.UserEntity
+import com.juanbas.ekonomin.dataBase.entities.UserEntity
 import kotlinx.coroutines.*
 import kotlinx.coroutines.Dispatchers.IO
-import org.w3c.dom.Entity
 
 
 class UserRepository(application: Application) : Repository(application) {
@@ -43,5 +42,7 @@ class UserRepository(application: Application) : Repository(application) {
     fun getUserById(id: String): UserEntity? = runBlocking{
         userDao?.getUserById(id)
     }
+
+    fun isUserLoggedIn(id: String): LiveData<Boolean>? = userDao?.isUserLoggedIn(id)
 
 }

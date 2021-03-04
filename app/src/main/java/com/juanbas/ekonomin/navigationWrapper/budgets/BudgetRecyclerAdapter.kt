@@ -8,8 +8,8 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.juanbas.ekonomin.R
-import com.juanbas.ekonomin.dataBase.Entities.BudgetEntity
-import com.juanbas.ekonomin.dataBase.Repositories.BudgetRepository
+import com.juanbas.ekonomin.dataBase.entities.BudgetEntity
+import com.juanbas.ekonomin.dataBase.repositories.BudgetRepository
 import kotlinx.android.synthetic.main.budget_recycler_item_row.view.*
 
 

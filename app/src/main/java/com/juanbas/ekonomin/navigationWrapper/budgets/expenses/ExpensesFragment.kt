@@ -12,8 +12,8 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.juanbas.ekonomin.R
-import com.juanbas.ekonomin.dataBase.Entities.ExpenseEntity
-import com.juanbas.ekonomin.dataBase.Repositories.BudgetRepository
+import com.juanbas.ekonomin.dataBase.entities.ExpenseEntity
+import com.juanbas.ekonomin.dataBase.repositories.BudgetRepository
 import kotlinx.android.synthetic.main.expense_add_dialog.view.*
 
 /** Used to handle insertion of new expenses. */
